@@ -53,7 +53,7 @@ The prefix MUST be in lowercase as per the [DID specification](https://www.w3.or
 This method uses **uns.network** addresses as identifiers. The DID identifies the holder of the private key associated with the address. A `uns` DID is formated as follows:
 
 ```
-uns-did = "did:uns" uns-specific-idstring
+uns-did = "did:uns:" uns-specific-idstring
 uns-specific-idstring = uns-address
 ```
 
