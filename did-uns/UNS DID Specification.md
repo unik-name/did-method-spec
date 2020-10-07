@@ -1,16 +1,30 @@
-# Uns DID Specification #
+# uns.network DID Method Specification #
 
+TODO: 
 
+​	Add kover links
+
+​	Write Intro
+
+​	Modify abstract
+
+​	Write Security & Privacy considerations
 
 ## Author ##
 
-Space Elephant // Unikname // **uns.network**
+[Unikname Team](https://www.unikname.com/en/equipe-unikname-2/)
 
-TODO: Choose Author
+From Space Elephant SAS/France
+
+Written by Sophie Dramé-Maigné
 
 
 
 ## Abstract ##
+
+ADD dedicated blockchain
+
+
 
 As the world is turning increasingly more digital, there is a growing need for globally unique identifiers. Decentralized Identifiers (DIDs) offer an alternative to traditional solutions relying on central entities to issue and manage such identifiers. DIDs take advantage of decentralized verifiable data registry such as blockchains to enable the decentralization of these processes and give users control over their own online identities. 
 
@@ -24,17 +38,23 @@ This DID method has been registered in the [DID Specification Registries](https:
 
 TODO: Write intro ?
 
+dedicated blockchain
+
+NFT
+
+​	ID is first use case 
+
+​	others to come
+
 
 
 ## Target System ##
 
-The `uns` DID method uses [**uns.network**](docs.uns.network) as the underlying Verifiable Data Registry.
+The `uns` DID method uses the [**uns.network**](docs.uns.network) blockchain as the underlying Verifiable Data Registry.
 
 **uns.network** is a distributed network and protocol dedicated to handling IDs rooted in the blockchain, aiming to secure any web and mobile connections, and to protect users' privacy. 
 
-
-
-COMMENT: WHAT DO WE WANT TO SAY HERE?
+**uns.network** is based on [ARK.io]().
 
 
 
@@ -59,7 +79,7 @@ uns-specific-idstring = uns-address
 
 > :warning: **uns.network** addresses ARE case-sensitives.
 
-**uns.network** is based on [Ark.io](https://ark.io/). As such, **uns.network** addresses follow the generation pattern specified in [Ark.io documentation](https://learn.ark.dev/concepts/cryptography):
+**uns.network** is based on [Ark.io](https://ark.io/). As such, **uns.network** address generation follows the generation pattern specified in [Ark.io documentation](https://learn.ark.dev/concepts/cryptography) as illustrated below:
 
 | <img src="passphrase_account.png" alt="passphrase_account.png" style="zoom:50%;" /> |
 | :----------------------------------------------------------: |
@@ -89,15 +109,14 @@ We provide an example DID Document below:
     "@context": ["https://www.w3.org/ns/did/v1"],
     "id": "did:uns:UYWaMkArHJjMecuHgs6LYapFtvV27QeafX",
     "created": "2020-04-28T06:38:08Z",
-    "publicKey": [
+    "verificationMethod": [
         {
-            "id": "did:uns:UYWaMkArHJjMecuHgs6LYapFtvV27QeafX#vm1",
+            "id": "did:uns:UYWaMkArHJjMecuHgs6LYapFtvV27QeafX",
             "controller": "did:uns:UYWaMkArHJjMecuHgs6LYapFtvV27QeafX",
             "type": "EcdsaSecp256k1VerificationKey2019",
-            "publicKeyBase58": "Kmp7t8E7tK9Buj2r8z2wjMbSYMzPunQ1j6h25jn5oRFyUDX66n4W32GN7ohhgFNhGkNJErRcnS1hGP7Ueb3vLYjfdQ"
+            "publicKeyHex": "02ef4ee8587a532cfb3bf3527c9ad1c14405cb1c6638ea477c5177dc121e35ea67"
         }
-    ], 
-	"authentication": ["vm1"]
+    ]
 }
 ```
 
@@ -113,15 +132,15 @@ The first step in creating a `uns` DID is to generate a **uns.network** address,
 
 > :warning: **The security of one's account is dependent on the associated passphrase randomness**: 
 >
-> One can technically use any word, phrase, or string as a passphrase which will result in a valid **uns.network** cryptoaccount; however, it is heavily discouraged as the security of an address relies on the randomness of its passphrase. Humans are bad at creating randomness, and entering sequences of random letters and numbers isn't easy to do accurately.
+> One can technically use any word, phrase, or string as a passphrase which will result in a valid **uns.network** cryptoaccount; however, it is heavily discouraged as the security of an address relies on the randomness of its passphrase. Humans are bad at creating randomness, and entering sequences of random letters and numbers is not easy to do accurately.
 >
-> **uns.network** passphrases are implemented using ARK.IO algorithms, based on the BIP39 Protocol, and are a combination of twelve words.
+> **uns.network** passphrases are implemented using ARK.IO algorithms, based on the [BIP39 Protocol](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki), and are a combination of twelve words.
 
 
 
 The creation of the private key is implicitly equivalent to the creation of the associated DID. This step can be achieved independently from the network.  
 
-**uns.network** provides an interactive [Command Line Interface](https://docs.uns.network/uns-use-the-network/cli.html#download-and-installation) to create and manage crypto accounts. The following command can be used for account creation: 
+**uns.network** provides an interactive [Command Line Interface (CLI)](https://docs.uns.network/uns-use-the-network/cli.html#download-and-installation) to create and manage cryptoaccounts. The following command can be used for account creation: 
 
 ```bash
 $ uns cryptoaccount:create
@@ -132,15 +151,15 @@ Example output:
 ```bash
 $ uns cryptoaccount:create
 
-⚠️  WARNING: this information is not saved anywhere. You need to copy and save it by your own. ⚠️
-
+» :warn: This information is not saved anywhere. You need to copy and save it by your own.;
 {
-  "address": "U9B6HLADr1Fd6TXvEGCuNc3A9aHK9JzjYC",
-  "publicKey": "03522706bd0b812faea10e92dc0400e37aba468f9df3e2f63570c11c2b66eadc22",
-  "privateKey": "d7877b7867404cd35bf85ea7643ad23058f5af1262d11a389ffc429648f4abe7",
-  "passphrase": "train drastic alley office seed glove cable fee firm during lottery cause",
+  "address": "URLnkeNhceYPLUzX3ot29q3mfp11tXPKnU",
+  "publicKey": "0286ad0c28b47fdf17870e3916f3badb97939a21d69cc03a524d490643e726c7b2",
+  "privateKey": "4bb02985c61ceb74ae8dd4503018809ac43388bac385af1c9f4e901002935280",
+  "passphrase": "cabin wedding recipe swear stuff churn twelve mammal sight shoulder ensure calm",
   "network": "livenet"
 }
+
 ```
 
 For more information, see the [relevant documentation](https://docs.uns.network/uns-use-the-network/cli.html#cryptoaccount-create).
@@ -149,13 +168,13 @@ For more information, see the [relevant documentation](https://docs.uns.network/
 
 #### Step 2: Address diclosure ####
 
-**uns.network** addresses need not be registered with the network to be valid. However, if **uns.network** has no record involving a given address, the  associated DDoc cannot be generated. Therefore, to complete the DID creation process, the private key holder MUST perform an operation on the **uns.network**.
+**uns.network** addresses need not be registered with the network to be valid. However, if the **uns.network** blockchain has no record involving a given address, the  associated DDoc cannot be generated. Therefore, to complete the DID creation process, the private key holder MUST perform an operation on **uns.network**.
 
 
 
 ### Read (Resolve) ###
 
-The DDoc is constructed by extracting information written into the **uns.network** blockchain. These operations are read-only and are therefore not permissionned.  **uns.network** provides an interactive [Command Line Interface](https://docs.uns.network/uns-use-the-network/cli.html#download-and-installation). The following command can be used to read account information: 
+The DDoc is constructed by extracting information written into the **uns.network** blockchain. These operations are read-only and are therefore not permissionned.   The following [CLI](https://docs.uns.network/uns-use-the-network/cli.html#download-and-installation) command can be used to read account information: 
 
 ```bash
 $ uns cryptoaccount:read TARGET 
@@ -185,13 +204,11 @@ For more information on the Command Line Interface functions, see the [relevant 
 
 The example output above constructs the following DDoc:
 
- 
-
 ```json
 {
     "@context": ["https://www.w3.org/ns/did/v1"],
     "id": "did:uns:UYWaMkArHJjMecuHgs6LYapFtvV27QeafX",
-    "publicKey": [
+    "verificationMethod": [
         {
             "id": "did:uns:UYWaMkArHJjMecuHgs6LYapFtvV27QeafX#key1",
             "controller": "did:uns:UYWaMkArHJjMecuHgs6LYapFtvV27QeafX",
