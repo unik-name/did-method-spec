@@ -83,7 +83,7 @@ uns-specific-idstring = uns-address
 
 > :warning: **uns.network** addresses ARE case-sensitives.
 
-**uns.network** is based on [Ark.io](https://ark.io/). As such, **uns.network** address generation follows the generation pattern specified in [Ark.io documentation](https://learn.ark.dev/concepts/cryptography) as illustrated below:
+**uns.network** address generation follows the generation pattern specified in [uns.network documentation](https://docs.uns.network/uns-network-key-concepts/cryptography-overview.html) as illustrated below:
 
 | <img src="passphrase_account.png" alt="passphrase_account.png" style="zoom:50%;" /> |
 | :----------------------------------------------------------: |
