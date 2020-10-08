@@ -1,18 +1,28 @@
 # Unikname DID Specification #
 
+TODO
+
+​	Write intro
+
+​	modify abstract
+
+​	write security & privacy
+
 
 
 ## Author ##
 
-Space Elephant // Unikname // **uns.network**
+[Unikname Team](https://www.unikname.com/en/equipe-unikname-2/)
 
-TODO: Choose Author
+From [Space Elephant SAS/France](https://www.spacelephant.org/)
+
+Written by Sophie Dramé-Maigné
 
 
 
 ## Abstract ##
 
-TODO: Modify abstract
+TODO: ADD NFT
 
 
 
@@ -28,6 +38,10 @@ This DID method has been registered in the [DID Specification Registries](https:
 
 TODO: Write intro
 
+
+
+NFT are identifiers not identification
+
 What we do
 
 human-readable blockchain-based decentralized
@@ -42,31 +56,29 @@ To solve @unikname to DID and more, Unikname has developed a resolver
 
 ## Target System ##
 
-The `unik` DID method uses [**uns.network**](docs.uns.network) as the underlying Verifiable Data Registry.
+The `unik` DID method uses the [**uns.network**](docs.uns.network) blockchain as the underlying Verifiable Data Registry.
 
 **uns.network** is a distributed network and protocol dedicated to handling IDs rooted in the blockchain, aiming to secure any web and mobile connections, and to protect users' privacy. 
 
-
-
-TODO: Present uns.network
-
-Based on Ark.io
-
-Info + How to participate [link]
+**uns.network** is based on [ARK.io]().
 
 
 
 ### Tools ###
 
-When working with **uns.network**, there are two preferred tools: a command line tool, and a graphical interface. 
+When working with @uniknames, there are two preferred tools: a command line tool, and a graphical interface. 
+
+
 
 #### Command Line Interface (CLI) ####
 
-**uns.network** provides an interactive [Command Line Interface](https://docs.uns.network/uns-use-the-network/cli.html#download-and-installation) to create and manage @unikname as well as their properties and the cryptoaccount that own them. The rest of this specification will provide examples using the CLI. 
+**uns.network** provides an interactive [Command Line Interface](https://docs.uns.network/uns-use-the-network/cli.html#download-and-installation) to create and manage @uniknames as well as their properties and the cryptoaccount that own them. The rest of this specification will provide examples using the CLI. 
+
+
 
 #### My Unikname app ###
 
-PRESENT APP HERE
+The Unikname Team alternatively provides an [application](my.unikname.app) to manage and use @uniknames. 
 
 
 
@@ -106,7 +118,7 @@ We provide an example DID document below:
     "id": "did:unik:158cffbe4d7b567468a17290c0cd1546ea3b013059a3a471e5ad309cfddfb0e3",
     "created": "2020-04-28T04:38:08.000Z",
     "controller": "did:uns:UYWaMkArHJjMecuHgs6LYapFtvV27QeafX",
-    "publicKey": [
+    "verificationMethod": [
         {
             "id": "did:unik:158cffbe4d7b567468a17290c0cd1546ea3b013059a3a471e5ad309cfddfb0e3#controller",
             "controller": "did:uns:UYWaMkArHJjMecuHgs6LYapFtvV27QeafX",
@@ -130,13 +142,11 @@ A `unik` DID Document MUST include a controller field. This field cannot point t
 
 At the moment, `unik` DID only support `uns` DID controllers. This may be extended in the future.
 
-##### publicKey #####
+##### verificationMethod #####
 
 A `unik` DID Document MUST include a list of public keys, at least one of which MUST belong to their controller. Such a key is labeled as `#controller`.
 
 ##### authentication #####
-
-SHOULD THIS BE MANDATORY ?
 
 A `unik` DID Document MUST include an authentication field. The default value for this field is `["controller"]`.
 
@@ -151,13 +161,12 @@ TODO:
 
 Questions & Remarks :
 
-- publicKey may be replaced by verificationMethod
-- The DIF has not yet reached a consensus on key format. It is currently using PEM and Base58 (Bitcoin). Other candidates are:
-  - base64url
-  - base16 (hex)
-  - Jwk (JSON Web Key - normative definition still pending)
 - Do we want to expose service endpoints ?
-- Do we want to include creation/modification date ?
+  - See with Damien
+- Do we want to include modification date ?
+  - The info exist
+  - How hard is it to get ?
+  - Is it a valuable info to have ?
 - Validate that the verification method type is correct
 
 
@@ -176,9 +185,7 @@ The creation of a `unik` DID requires three steps: the user chooses the @uniknam
 
 A @unikname is a human-readable identifier. It can be used to authenticate one-self on the Internet or to aggregate and advertise properties in an easily discoverable manner. @uniknames are private by default but can be publicly disclosed. 
 
-SHOULD WE MENTION THE PATTERN ?
-
- A @unikname is formatted as follows:
+A @unikname is formatted as follows:
 
 ```
 @["type":]"explicitValue"
@@ -188,15 +195,15 @@ SHOULD WE MENTION THE PATTERN ?
 
 There are 3 types of @uniknames that can be represented either by a number or a string:
 
-| Type (string) | Type (numerical value) | Scope |
-| :------------ | ---------------------- | ----- |
-| individual    | 1                      |       |
-| organization  | 2                      |       |
-| network       | 3                      |       |
+| Type (string) | Type (numerical value) |
+| :------------ | ---------------------- |
+| individual    | 1                      |
+| organization  | 2                      |
+| network       | 3                      |
 
-When no type is specified, it defaults to individual.
+When no type is specified, it defaults to individual. For more information on the different types of @uniknames, see the [relevant documentation](https://docs.uns.network/uns-network-key-concepts/unik-type.html#summary).
 
-A @unikname therefore has several equivalent representations. For instance, the following @uniknames are equivalent:
+A @unikname therefore has several equivalent representations. For instance, the following @uniknames are equivalent and will resolve to the same DID:
 
 ```
 @bob
@@ -208,11 +215,13 @@ A @unikname therefore has several equivalent representations. For instance, the 
 
 ##### Explicit value #####
 
-The explicit value is the human-readable part of a @unikname. It can be an arbitrary long string of characters from the Safetypo:copyright: alphabet[LINK TO SOMETHING HERE]. 
+The explicit value is the human-readable part of a @unikname. It can be an arbitrary long string of characters from the [Safetypo:copyright: alphabet](https://github.com/unik-name/SafeTypo/blob/master/alphabet.md). 
 
 > :warning: For applicative purposes, we recommend an explicit value no longer than 100 characters.
 
-To prevent phishing attempts, explicit values that are too close to existing @unikname cannot be registered. For instance, the following @uniknames are equivalent:
+To prevent phishing and spoofing attempts, explicit values that are too similar to each other are considered equivalent and will resolve to the same DID. This means that a @unikname with an explicit value too close to an existing @unikname of the same type cannot be registered. 
+
+For instance, the following @uniknames are equivalent:
 
 ```
 @bob
@@ -222,17 +231,13 @@ To prevent phishing attempts, explicit values that are too close to existing @un
 @bob--------------------
 ```
 
-For more information; SEE WHAT ?
-
-IF PATTERN? ADD HERE.
-
 
 
 #### Step 2 - Verify availability ####
 
 For privacy's sake, @uniknames are not directly written on the chain. Instead, the **uns.network** registers a *unik-id* derived from the @unikname. It is therefore not possible to access a registry of all the existing @uniknames. However, it is easy to verify if a given @unikname is available.
 
- The following command can be used to read the information related to a given @unikname: 
+ The following [CLI]() command can be used to read the information related to a given @unikname: 
 
 ```bash
 $ uns unik:read TARGET
@@ -272,25 +277,27 @@ $ uns unik:read @lulu
 » :stop: DID does not exist;
 ```
 
-
+SHOULD WE NOT PUT THE ERROR MESSAGE IN THE DOC ?
 
 #### Step 3 - Register it on the chain ####
 
-> :warning: *Pre-requisite*: You need a **uns.network** account with enough UNS (SPECIFY PRICE HERE ? LINK TO IT ?)
+> :warning: *Pre-requisite*: You need a **uns.network** account with enough UNS
 >
 > This step writes a transaction on the **uns.network** blockchain. It requires a blockchain account with enough funds to pay for the transaction.
 
 
 
-To claim a @unikname (and its associated DID), one must register the @unikname on **uns.network**.
+To claim a @unikname (and its associated DID), one must register the @unikname on the **uns.network** blockchain.
 
-Here again, the [Command Line Interface](https://docs.uns.network/uns-use-the-network/cli.html#download-and-installation) provides a method to do so:
+Here again, the [CLI](https://docs.uns.network/uns-use-the-network/cli.html#download-and-installation) provides a method to do so:
 
 ```bash
 $ uns unik:create --explicitValue {explicitValue} --type [individual|organization|network] --coupon {coupon}
 ```
 
-The user will be prompted to enter their passphrase [LINK TO UNS SPEC HERE ?] to sign the transaction. This authenticates the transaction.
+SHOULD WE REMOVE THE COUPON HERE ?
+
+The user will be prompted to enter their [passphrase](https://docs.uns.network/uns-network-key-concepts/cryptography-overview.html#passphrase) to sign the transaction. This authenticates the transaction.
 
 Example of successful output:
 
@@ -316,9 +323,9 @@ See transaction in explorer: https://explorer.uns.network/#/transaction/a73f4269
 
 Alternatively, my Unikname App provides a graphical interface to perform all three previous steps.
 
-ADD SCREENSHOT HERE ?
-
-LIEN D'INSTALL ?
+| ![](/home/sdramemaigne/workspace/did-method-spec/did-unik/screenshot_choose_your_unikname.jpg) | ![](/home/sdramemaigne/workspace/did-method-spec/did-unik/screenshot_unikname_created.jpg) |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+|                                                              |                                                              |
 
 
 
@@ -326,7 +333,7 @@ LIEN D'INSTALL ?
 
 The DDoc is constructed by extracting information written into the **uns.network** blockchain. These operations are read-only and are therefore not permissionned. 
 
-To retrieve information linked to a @unikname, use the following method: 
+To retrieve information linked to a @unikname, use the following CLI command: 
 
 ```bash
 $ uns unik:read TARGET
@@ -359,7 +366,7 @@ data:
 
 
 
-To retrieve the public key associated with the owner's address, use the following command:
+To retrieve the public key associated with the owner's address, use the following CLI command:
 
 ```bash
 $uns cryptoaccount:read TARGET
@@ -393,7 +400,7 @@ The example above would yield the following DDoc:
     "id": "did:unik:158cffbe4d7b567468a17290c0cd1546ea3b013059a3a471e5ad309cfddfb0e3",
     "created": "2020-04-28T04:38:08.000Z",
     "controller": "did:uns:UYWaMkArHJjMecuHgs6LYapFtvV27QeafX",
-    "publicKey": [
+    "verificationMethod": [
         {
             "id": "did:unik:158cffbe4d7b567468a17290c0cd1546ea3b013059a3a471e5ad309cfddfb0e3#controller",
             "controller": "did:uns:UYWaMkArHJjMecuHgs6LYapFtvV27QeafX",
@@ -409,7 +416,7 @@ The example above would yield the following DDoc:
 
 ### Update ###
 
-We distinguish between two types of updates: an ownership change, and the management of DDoc properties (addition or update). 
+We distinguish between two types of updates: an ownership change, and the management of DDoc properties (addition, update, or deletion). 
 
 #### Ownership change ####
 
@@ -446,12 +453,12 @@ The following properties are excluded from this requirement:
 - id
 - controller
 - created
-- publicKey
+- verificationMethod
 - authentication
 
 
 
-Two methods can be used to manage @unikname's properties, `properties:set` and `properties:unset`, that add/update and remove properties respectively:
+Two CLI methods can be used to manage @unikname's properties, `properties:set` and `properties:unset`, that add/update and remove properties respectively:
 
 ```bash
 $ uns properties:set {TARGET} --key "{key1}" --value "{value1}" --key "{key2}" --value "{value2}"
@@ -461,7 +468,7 @@ $ uns properties:set {TARGET} --key "{key1}" --value "{value1}" --key "{key2}" -
 $ uns properties:unset {TARGET} -k prop1 -k prop2
 ```
 
-> :warning: using the CLI, the value is limited to a 255-character long string.
+> :warning: using the CLI, the value is limited to a 255-character-long string.
 
 
 
@@ -471,7 +478,7 @@ The following properties CANNOT be set in this way. When they appear as a @unikn
 
 - did-id
 - did-controller
-- created
+- did-created
 
 
 
@@ -479,13 +486,7 @@ The following properties CANNOT be set in this way. When they appear as a @unikn
 
 This function in not yet supported by the `unik` DID method.
 
-BURN INCLUDED LATER
 
-
-
-## Reference Implementation ##
-
-None for now
 
 ## Security Considerations ##
 
@@ -544,9 +545,9 @@ If they apply, the spec MUST discuss the following
 - unsolicited traffic
 - misattribution
 - correlation
-- identification
+- **identification**
 - secondary use
-- disclosure
+- **disclosure**
 - exclusion
 
 ## References ##

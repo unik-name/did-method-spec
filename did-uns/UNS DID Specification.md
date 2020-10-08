@@ -40,6 +40,10 @@ TODO: Write intro ?
 
 dedicated blockchain
 
+​	contrary to generalist blockchain
+
+​	made to work with NFT
+
 NFT
 
 ​	ID is first use case 
