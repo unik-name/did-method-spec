@@ -172,7 +172,7 @@ For more information, see the [relevant documentation](https://docs.uns.network/
 
 #### Step 2: Address diclosure ####
 
-**uns.network** addresses need not be registered with the network to be valid. However, if the **uns.network** blockchain has no record involving a given address, the  associated DDoc cannot be generated. Therefore, to complete the DID creation process, the private key holder MUST perform an operation on **uns.network**.
+**uns.network** addresses need not be registered with the network to be valid. However, if the **uns.network** blockchain has no record involving a given address, the associated DDoc cannot be generated. Therefore, to complete the DID creation process, the private key holder MUST perform an operation on **uns.network**.
 
 
 
