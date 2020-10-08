@@ -181,12 +181,6 @@ For more information, see the [relevant documentation](https://docs.uns.network/
 The DDoc is constructed by extracting information written into the **uns.network** blockchain. These operations are read-only and are therefore not permissionned.   The following [CLI](https://docs.uns.network/uns-use-the-network/cli.html#download-and-installation) command can be used to read account information: 
 
 ```bash
-$ uns cryptoaccount:read TARGET 
-```
-
-Example output:
-
-```bash
 $ uns cryptoaccount:read UYWaMkArHJjMecuHgs6LYapFtvV27QeafX
 
 {
@@ -200,8 +194,6 @@ $ uns cryptoaccount:read UYWaMkArHJjMecuHgs6LYapFtvV27QeafX
       "unik": 1
     }
   }
-```
-
 For more information on the Command Line Interface functions, see the [relevant documentation](https://docs.uns.network/uns-use-the-network/cli.html#cryptoaccount-read).
 
 
