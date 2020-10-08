@@ -178,7 +178,7 @@ For more information, see the [relevant documentation](https://docs.uns.network/
 
 ### Read (Resolve) ###
 
-The DDoc is constructed by extracting information written into the **uns.network** blockchain. These operations are read-only and are therefore not permissionned.   The following [CLI](https://docs.uns.network/uns-use-the-network/cli.html#download-and-installation) command can be used to read account information: 
+The DDoc is constructed by extracting information written into the **uns.network** blockchain. These operations are read-only and are therefore not permissioned. The following [CLI](https://docs.uns.network/uns-use-the-network/cli.html#cryptoaccount-read) command can be used to read account information: 
 
 ```bash
 $ uns cryptoaccount:read UYWaMkArHJjMecuHgs6LYapFtvV27QeafX
