@@ -144,7 +144,7 @@ The first step in creating a `uns` DID is to generate a **uns.network** address,
 
 The creation of the private key is implicitly equivalent to the creation of the associated DID. This step can be achieved independently from the network.  
 
-**uns.network** provides an interactive [Command Line Interface (CLI)](https://docs.uns.network/uns-use-the-network/cli.html#download-and-installation) to create and manage cryptoaccounts. The following command can be used for account creation: 
+**uns.network** provides an interactive [Command Line Interface (CLI)](https://docs.uns.network/uns-use-the-network/cli.html) to create and manage cryptoaccounts. The following command can be used for account creation: 
 
 ```bash
 $ uns cryptoaccount:create
