@@ -58,7 +58,7 @@ The `uns` DID method uses the [**uns.network**](docs.uns.network) blockchain as 
 
 **uns.network** is a distributed network and protocol dedicated to handling IDs rooted in the blockchain, aiming to secure any web and mobile connections, and to protect users' privacy. 
 
-**uns.network** is based on [ARK.io]().
+**uns.network** is based on [ARK.io](https://ark.io).
 
 
 
@@ -306,4 +306,3 @@ If they apply, the spec MUST discuss the following
 []	[ECDSA Secp256k1 Signature 2019](https://w3c-ccg.github.io/lds-ecdsa-secp256k1-2019/). O. Steele. W3C. April 2019
 
 []	[Linked Data Proofs](https://w3c-ccg.github.io/ld-proofs/). D. Longley, M. Sporny. W3C. 
-
