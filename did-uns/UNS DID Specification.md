@@ -148,14 +148,8 @@ The creation of the private key is implicitly equivalent to the creation of the 
 
 ```bash
 $ uns cryptoaccount:create
-```
 
-Example output:
-
-```bash
-$ uns cryptoaccount:create
-
-» :warn: This information is not saved anywhere. You need to copy and save it by your own.;
+» :warn: This information is not saved anywhere. You need to copy and save it on your own.;
 {
   "address": "URLnkeNhceYPLUzX3ot29q3mfp11tXPKnU",
   "publicKey": "0286ad0c28b47fdf17870e3916f3badb97939a21d69cc03a524d490643e726c7b2",
@@ -164,7 +158,6 @@ $ uns cryptoaccount:create
   "network": "livenet"
 }
 
-```
 
 For more information, see the [relevant documentation](https://docs.uns.network/uns-use-the-network/cli.html#cryptoaccount-create).
 
