@@ -2,11 +2,7 @@
 
 TODO: 
 
-​	Add kover links
-
 ​	Write Intro
-
-​	Modify abstract
 
 ​	Write Security & Privacy considerations
 
@@ -22,13 +18,11 @@ Written by Sophie Dramé-Maigné
 
 ## Abstract ##
 
-ADD dedicated blockchain
-
-
-
 As the world is turning increasingly more digital, there is a growing need for globally unique identifiers. Decentralized Identifiers (DIDs) offer an alternative to traditional solutions relying on central entities to issue and manage such identifiers. DIDs take advantage of decentralized verifiable data registry such as blockchains to enable the decentralization of these processes and give users control over their own online identities. 
 
-This document defines the `uns` DID method in compliance with the W3C's [DID Specification](https://w3c.github.io/did-core/). It describes how uns-specific DID are generated as well as how to manage the corresponding DIDs and resolve them to DID Documents.
+This document defines the `uns` DID method in compliance with the W3C's [DID Specification](https://w3c.github.io/did-core/). These DIDs identify the holders of **uns.network** accounts using their blockchain address. **uns.network** is a blockchain dedicated to the management of Non Fungible Tokens (NFT).
+
+This document describes how uns-specific DID are generated as well as how to manage the corresponding DIDs and resolve them to DID Documents.
 
 This DID method has been registered in the [DID Specification Registries](https://w3c.github.io/did-spec-registries/#did-methods).
 
@@ -37,6 +31,10 @@ This DID method has been registered in the [DID Specification Registries](https:
 ## Intro ##
 
 TODO: Write intro ?
+
+
+
+
 
 dedicated blockchain
 
@@ -79,6 +77,7 @@ This method uses **uns.network** addresses as identifiers. The DID identifies th
 ```
 uns-did = "did:uns:" uns-specific-idstring
 uns-specific-idstring = uns-address
+uns-address =  34-character-long Base58 encoding of the public key
 ```
 
 > :warning: **uns.network** addresses ARE case-sensitives.
@@ -149,7 +148,7 @@ The creation of the private key is implicitly equivalent to the creation of the 
 ```bash
 $ uns cryptoaccount:create
 
-» :warn: This information is not saved anywhere. You need to copy and save it on your own.;
+» :warn: This information is not saved anywhere. You need to copy and save it by your own.;
 {
   "address": "URLnkeNhceYPLUzX3ot29q3mfp11tXPKnU",
   "publicKey": "0286ad0c28b47fdf17870e3916f3badb97939a21d69cc03a524d490643e726c7b2",
@@ -158,6 +157,7 @@ $ uns cryptoaccount:create
   "network": "livenet"
 }
 
+```
 
 For more information, see the [relevant documentation](https://docs.uns.network/uns-use-the-network/cli.html#cryptoaccount-create).
 
@@ -193,7 +193,7 @@ For more information on the Command Line Interface functions, see the [relevant 
 
 The example output above constructs the following DDoc:
 
-```json
+​```json
 {
     "@context": ["https://www.w3.org/ns/did/v1"],
     "id": "did:uns:UYWaMkArHJjMecuHgs6LYapFtvV27QeafX",
@@ -224,7 +224,66 @@ This function in not supported by the `uns` DID method.
 
 ## Security Considerations ##
 
-This section follows requirements from [RFC 3552 - Section 5](https://tools.ietf.org/html/rfc3552#section-5) and the [DID Core Specification - Section 7.3](https://www.w3.org/TR/did-core/#security-requirements).
+This section follows requirements from [RFC 3552](https://tools.ietf.org/html/rfc3552#section-5) and the [DID Core Specification](https://www.w3.org/TR/did-core/#security-requirements).
+
+
+
+### CRUD Operations ###
+
+Uns-specific DID and DDoc are created, read, and updated using the **uns.network** blockchain. All CRUD operations therefore benefit from the [security of **uns.network**](https://docs.uns.network/uns-network-security/) in terms of integrity protection and update authentication.
+
+
+
+#### Integrity protection ####
+
+blockchain
+
+​	replication
+
+​	openess
+
+​	consensus algo
+
+​		DPoS - 23 players in different categories
+
+
+
+#### Update authentication ####
+
+The security of the authentication process is based on the assumption that the account owner is the only one that can access their private key. This assumption does not hold when the private key is derived from a "guessable" passphrase or if it has been otherwise compromised. The account owner is solely responsible for the security of their private key. To mitigate the first pitfall, user SHOULD choose random passphrases. We recommend to use a combination of twelve words generated using the [BIP39 Protocol](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki). 
+
+**uns.network** transaction are signed using ECDSA on the Secp256k1 curve. The security of ECDSA is dependent on the hardness of the Discrete Logarithm problem. Secp256k1 is a well-known and well-used curve. These choices ensure that a valid signature for a given public key can only be produced using the associated private key, which is only held by the account owner, thus authenticating the transaction and the associated operation. 
+
+
+
+### Threat mitigation ###
+
+#### Summary ####
+
+| Attacks                  | In-scope ? | Susceptibility | Comments |
+| ------------------------ | ---------- | -------------- | -------- |
+| Eavesdropping            |            |                |          |
+| Replay attacks           | yes        |                |          |
+| Message insertion        |            |                |          |
+| Deletion                 |            |                |          |
+| Modification             |            |                |          |
+| Man-in-the-middle attack |            |                |          |
+| Denial of service        |            |                |          |
+
+###  ###
+
+#### In-scope attacks ####
+
+- In scope attacks
+  - susceptible to them
+  - protected against
+- residual risks after threat mitigations
+
+#### Out of scope attacks ####
+
+Why ?
+
+
 
 Attacks to be considered:
 
@@ -235,32 +294,6 @@ Attacks to be considered:
 - modification
 - man-in-the-middle
 - denial of service
-
-
-
-What to say about them:
-
-- Out of scope attacks (and why)
-- In scope attacks
-  - susceptible to them
-  - protected against
-- residual risks after threat mitigations
-- if authentication
-  - base assumption of why this is secure (ie, public key crypto assumptions + private key safekeeping)
-
-
-
-For all methods defined in DID core spec section 7.2:
-
-- Integrity Protection
-- Update Authentication 
-
-
-
-For service endpoints the following MUST be discussed :
-
-- Method-specific endpoint authentication 
-- Security assumptions based on topology (light node if any)
 
 
 
