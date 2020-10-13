@@ -230,25 +230,19 @@ This section follows requirements from [RFC 3552](https://tools.ietf.org/html/rf
 
 ### CRUD Operations ###
 
-Uns-specific DID and DDoc are created, read, and updated using the **uns.network** blockchain. All CRUD operations therefore benefit from the [security of **uns.network**](https://docs.uns.network/uns-network-security/) in terms of integrity protection and update authentication.
+Uns-specific DID and DDoc are created and read using the **uns.network** blockchain. All CRUD operations therefore benefit from the [security of **uns.network**](https://docs.uns.network/uns-network-security/) in terms of integrity protection and update authentication.
 
 
 
 #### Integrity protection ####
 
-blockchain
+The blockchain has many build-in integrity protection mechanisms. First, the history of transactions is replicated across many independent registries. Second, transactions and blocks are hashed and linked in a way that makes it impossible for a modification to go unnoticed. Third, **uns.network** is [secured by 23 players](https://docs.uns.network/uns-network-key-concepts/network-governance.html) that sign and validate blocks. Their number, diversity and vested interest in the network make it complicated to bribe them into forging an alternative history.
 
-​	replication
-
-​	openess
-
-​	consensus algo
-
-​		DPoS - 23 players in different categories
+For all these reasons, once information has been added to the chain, it is hard to modify. Additionally, its integrity can easily be verified.
 
 
 
-#### Update authentication ####
+#### Authentication ####
 
 The security of the authentication process is based on the assumption that the account owner is the only one that can access their private key. This assumption does not hold when the private key is derived from a "guessable" passphrase or if it has been otherwise compromised. The account owner is solely responsible for the security of their private key. To mitigate the first pitfall, user SHOULD choose random passphrases. We recommend to use a combination of twelve words generated using the [BIP39 Protocol](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki). 
 
@@ -260,44 +254,65 @@ The security of the authentication process is based on the assumption that the a
 
 #### Summary ####
 
-| Attacks                  | In-scope ? | Susceptibility | Comments |
-| ------------------------ | ---------- | -------------- | -------- |
-| Eavesdropping            |            |                |          |
-| Replay attacks           | yes        |                |          |
-| Message insertion        |            |                |          |
-| Deletion                 |            |                |          |
-| Modification             |            |                |          |
-| Man-in-the-middle attack |            |                |          |
-| Denial of service        |            |                |          |
+| Attacks                  | In-scope ? | Susceptibility | Comments                                                     |
+| ------------------------ | ---------- | -------------- | ------------------------------------------------------------ |
+| Eavesdropping            | no         | out of scope   | because everything is public                                 |
+| Replay attacks           | no         | out of scope   | because that will not affect the DID                         |
+| Message Insertion        | yes        | Protected      | consequence: register a DID for someone else                 |
+| Message Deletion         | yes        | Protected      | consequence: delete a DID                                    |
+| Message Modification     | yes        | Protected      | consequence: take ownership of someone else's DID            |
+| Man-in-the-middle attack | no         | out of scope   | because there is no communication stream to subvert          |
+| Denial of service        | yes        | Mitigated      | on-chain mitigation: fees, out-of-chain attacks are out of scope |
 
-###  ###
+
 
 #### In-scope attacks ####
 
-- In scope attacks
-  - susceptible to them
-  - protected against
-- residual risks after threat mitigations
+
+
+##### Message insertion, deletion, and modification #####
+
+###### Blockchain messages ######
+
+On the blockchain, messages are transactions. To be valid, a transaction must be signed by the private key associated with the issuer's address. This means that issuers cannot be spoofed. The signature is applied to the whole transaction, so no modification can occur unless an attacker is able to forge a valid signature for the modified transaction. 
+
+Once a transaction has been written into the blockchain, it is (computationally and logistically) very hard to delete (see CRUD operations - Integrity protection). In the event of an attacker intercepting a transaction before it reaches the network and censuring it, the issuer can re-issue said transaction using another network node. 
+
+This assumes users use the verification mechanisms that are available to them (signatures, hashes, multiple sources, etc)
+
+
+
+###### Out-of-blockchain messages ######
+
+`uns` DID are written and read on the **uns.network** blockchain. Messages used to request, transfer or otherwise manage this information are implementation-dependent. Their security is considered out of scope.
+
+
+
+##### Denial of service (DoS) #####
+
+###### On the blockchain ######
+
+Every **uns.network** transaction requires a fee to be processed. These fees are dependent on a transaction's volume and type. The network mitigates Denial of Service attacks by imposing a cost to each attempt that scales with the attack.
+
+Additionally, **uns.network** ensures there is a diversity of emitters in any given block. This prevents a single source from flooding the network with bogus transactions.
+
+
+
+###### On a given node ######
+
+Network players that choose to run their own blockchain node are solely responsible for their security. This includes a susceptibility to DoS attacks. If a given node cannot be contacted however, users can address their request to any other node on the network. Setting up a **uns.network** node is easy, the main hurdle being the time required to synchronize the new node to the network. As such, in the event of a large DoS attack, new network nodes can be deployed to replace those that cannot be accessed.
+
+
 
 #### Out of scope attacks ####
 
-Why ?
+All records from **uns.network** are public. An eavesdropper would gain no additional knowledge from what is already publicly available. This attack is therefore considered out of scope.
+
+This method does not support the update operation. Any valid blockchain transaction can be used to create a `uns` DID. Replaying an existing transaction would not affect existing transactions, nor could it update the associated DID or DDoc. This attack is therefore considered out of scope.
+
+Information used to create `uns` DID and DDoc are independently verifiable irregardless of how they were obtained. This means that an attacker gains nothing from subverting the communication channel used to retrieve them. This attack is therefore considered out of scope.
 
 
-
-Attacks to be considered:
-
-- eavesdropping
-- replay
-- message insertion
-- deletion
-- modification
-- man-in-the-middle
-- denial of service
-
-
-
-If the protocol incorporates cryptographic protection mechanisms, the [DID method](https://www.w3.org/TR/did-core/#dfn-did-methods) specification *MUST* clearly indicate which portions of the data are protected and what the protections are, and *SHOULD* give an indication to what sorts of attacks the cryptographic protection is susceptible. For example, integrity only, confidentiality, endpoint authentication, and so on.
 
 ## Privacy Considerations ##
 
