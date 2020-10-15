@@ -6,7 +6,7 @@
 
 [Unikname Team](https://www.unikname.com/en/equipe-unikname-2/)
 
-From Space Elephant SAS/France
+From [Space Elephant SAS/France](https://www.spacelephant.org/)
 
 Written by [Sophie Dramé-Maigné](mailto:sophie.dramemaigne@unikname.com)
 
@@ -155,9 +155,11 @@ For more information, see the [relevant documentation](https://docs.uns.network/
 
 ### Read (Resolve) ###
 
-The DDoc is constructed by extracting information written into the **uns.network** blockchain. These operations are read-only and are therefore not permissioned. The following [CLI](https://docs.uns.network/uns-use-the-network/cli.html#cryptoaccount-read) command can be used to read account information: 
+The DDoc is constructed by extracting information written into the **uns.network** blockchain. These operations are read-only and are therefore not permissioned. 
 
-```bash
+The following [CLI](https://docs.uns.network/uns-use-the-network/cli.html#cryptoaccount-read) command can be used to read account information: 
+
+```
 $ uns cryptoaccount:read UYWaMkArHJjMecuHgs6LYapFtvV27QeafX
 
 {
@@ -171,13 +173,13 @@ $ uns cryptoaccount:read UYWaMkArHJjMecuHgs6LYapFtvV27QeafX
       "unik": 1
     }
   }
-For more information on the Command Line Interface functions, see the [relevant documentation](https://docs.uns.network/uns-use-the-network/cli.html#cryptoaccount-read).
+```
 
 
 
 The example output above constructs the following DDoc:
 
-​```json
+```json
 {
     "@context": ["https://www.w3.org/ns/did/v1"],
     "id": "did:uns:UYWaMkArHJjMecuHgs6LYapFtvV27QeafX",
