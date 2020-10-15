@@ -1,10 +1,6 @@
 # uns.network DID Method Specification #
 
-TODO: 
 
-​	Write Intro
-
-​	Write Security & Privacy considerations
 
 ## Author ##
 
@@ -12,7 +8,7 @@ TODO:
 
 From Space Elephant SAS/France
 
-Written by Sophie Dramé-Maigné
+Written by [Sophie Dramé-Maigné](mailto:sophie.dramemaigne@unikname.com)
 
 
 
@@ -30,23 +26,11 @@ This DID method has been registered in the [DID Specification Registries](https:
 
 ## Intro ##
 
-TODO: Write intro ?
+The `uns` DID method provides support for DIDs on the **uns.network** blockchain. More specifically, it associates a DID to every address in the ledger. This method is very minimalistic in the sense that it produces DID Document (DDoc) with minimal information: a DID and its associated public key. Furthermore, once a uns-did is created, it cannot be updated. 
 
+The goal of this method is to work in tandem with other, more complex DID methods based on the same blockchain. **Uns.network** is dedicated to the management of Non Fungible Tokens (NFT). The first type of NFT that it supports is [@uniknames](https://docs.unikname.com/), human-readable identifiers. Just like any other tokens, @uniknames can be bought or exchanged, but they can also be linked to public properties the owner wishes to advertise, or used to connect to compliant websites in a private and secure fashion, among other things. The [`unik` DID method](https://github.com/spacelephant/did-method-spec) associates a DID to these NFT tokens, using uns-did as controllers.
 
-
-
-
-dedicated blockchain
-
-​	contrary to generalist blockchain
-
-​	made to work with NFT
-
-NFT
-
-​	ID is first use case 
-
-​	others to come
+Identifiers are only the first use case for **uns.network** NFTs. Other use cases are likely to require their own DID method based on `uns` DIDs.
 
 
 
@@ -316,26 +300,10 @@ Information used to create `uns` DID and DDoc are independently verifiable irreg
 
 ## Privacy Considerations ##
 
-This section follow specifications from [RFC6973 - Section 5](https://tools.ietf.org/html/rfc6973#section-5) and the [DID Core Specification - Section 7.4](https://www.w3.org/TR/did-core/#privacy-requirements).
-
-At minima, this section must point to [DID Core - Section 10](https://www.w3.org/TR/did-core/#privacy-considerations).
-
-If they apply, the spec MUST discuss the following
-
-- surveillance
-- stored data compromise
-- unsolicited traffic
-- misattribution
-- correlation
-- identification
-- secondary use
-- disclosure
-- exclusion
+Information about DID and privacy can be found in the [DID Core Specification](https://www.w3.org/TR/did-core/#privacy-considerations).
 
 ## References ##
 
-[RFC3552]	[Guidelines for Writing RFC Text on Security Considerations](https://tools.ietf.org/html/rfc3552). E. Rescorla; B. Korver. IETF. July 2003. Best Current Practice. URL: https://tools.ietf.org/html/rfc3552
+[ECDSA Secp256k1 Signature 2019](https://w3c-ccg.github.io/lds-ecdsa-secp256k1-2019/). O. Steele. W3C. April 2019
 
-[]	[ECDSA Secp256k1 Signature 2019](https://w3c-ccg.github.io/lds-ecdsa-secp256k1-2019/). O. Steele. W3C. April 2019
-
-[]	[Linked Data Proofs](https://w3c-ccg.github.io/ld-proofs/). D. Longley, M. Sporny. W3C. 
+[Linked Data Proofs](https://w3c-ccg.github.io/ld-proofs/). D. Longley, M. Sporny. W3C. 
