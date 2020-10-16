@@ -83,7 +83,7 @@ Different prefixes are used to identify different networks. **uns.network** uses
 
 
 
-The uniqueness and security of a **uns.network** crypto-account (and therefore those of the associated DID) depend on the randomness of the associated passphrase. The cryptographic properties of the functions used to derive the address from the passphrase (ie. non reversibility and collusion resistance) and the security of the underlying elliptic curve (secp256k1) ensure that the private key cannot be recovered from the address or public key. But if the passphrase can be guessed, the crypto-account is compromised.
+The uniqueness and security of a **uns.network** crypto-account (and therefore those of the associated DID) depend on the randomness of the associated passphrase. The cryptographic properties of the functions used to derive the address from the passphrase (ie. non reversibility and collision resistance) and the security of the underlying elliptic curve (secp256k1) ensure that the private key cannot be recovered from the address or public key. But if the passphrase can be guessed, the crypto-account is compromised.
 
 
 
