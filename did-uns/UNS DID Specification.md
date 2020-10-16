@@ -4,7 +4,7 @@
 
 ## Author ##
 
-[Unikname Team](https://www.unikname.com/en/equipe-unikname-2/)
+[Unikname Team](https://www.unikname.com/en/about-team/)
 
 From [Space Elephant SAS/France](https://www.spacelephant.org/)
 
