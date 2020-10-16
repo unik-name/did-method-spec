@@ -8,7 +8,7 @@ Other DID methods can be found on the [DID Specification Registry](https://w3c.g
 
 This method associates a DID to every address on the **uns.network** blockchain.
 
-[Its specification is publicly available](did-uns/UNS-DID-Specification.md).
+Its specification is [publicly available in this repository](did-uns/UNS-DID-Specification.md).
 
 ## did:unik
 
