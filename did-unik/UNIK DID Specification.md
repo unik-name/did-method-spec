@@ -4,9 +4,7 @@ TODO
 
 ​	Write intro
 
-​	modify abstract
-
-​	write security & privacy
+​	Write privacy considerations
 
 
 
@@ -16,19 +14,17 @@ TODO
 
 From [Space Elephant SAS/France](https://www.spacelephant.org/)
 
-Written by Sophie Dramé-Maigné
+Written by [Sophie Dramé-Maigné](mailto:sophie.dramemaigne@unikname.com)
 
 
 
 ## Abstract ##
 
-TODO: ADD NFT
-
-
-
 As the world is turning increasingly more digital, there is a growing need for globally unique identifiers. Decentralized Identifiers (DIDs) offer an alternative to traditional solutions relying on central entities to issue and manage such identifiers. DIDs take advantage of decentralized verifiable data registry such as blockchains to enable the decentralization of these processes and give users control over their own online identities. 
 
-This document defines the `unik` DID method in compliance with the W3C's [DID Specification](https://w3c.github.io/did-core/). It describes how unik-specific DID are generated as well as how to manage the corresponding DIDs and resolve them to DID Documents (DDoc). `unik` DID cannot be their own controller. `unik` DID are build to work with `uns` DID [ADD LINK] but are compatible with any other type of DIDs.
+And though physical users represent a good portion of DID owners, DID can be used to represent anything: industrial processes, digital assets, physical goods, blockchain tokens, and even identifiers. The `unik` DID method specializes in @uniknames, privacy-preserving human-readable identifiers, represented as Non-Fungible Tokens (NFT) on the **uns.network** blockchain. 
+
+This document defines the `unik` DID method in compliance with the W3C's [DID Specification](https://w3c.github.io/did-core/). It describes how unik-specific DID are generated as well as how to manage the corresponding DIDs and resolve them to DID Documents (DDoc). Because they represent identifiers, `unik` DID cannot be their own controller. `unik` DID are build to work with [uns DID](https://github.com/unik-name/did-method-spec/blob/main/did-uns/UNS-DID-Specification.md) as their management requires a **uns.network** cryptoaccount. However, other types of DIDs could be used as controllers in the future.
 
 This DID method has been registered in the [DID Specification Registries](https://w3c.github.io/did-spec-registries/#did-methods).
 
@@ -56,7 +52,7 @@ To solve @unikname to DID and more, Unikname has developed a resolver
 
 ## Target System ##
 
-The `unik` DID method uses the [**uns.network**](docs.uns.network) blockchain as the underlying Verifiable Data Registry.
+The `unik` DID method uses the [**uns.network**](docs.uns.network) blockchain as the underlying Verifiable Data Registry. A **uns.network** cryptoaccount is therefore required to create and update DID and DDocs.
 
 **uns.network** is a distributed network and protocol dedicated to handling IDs rooted in the blockchain, aiming to secure any web and mobile connections, and to protect users' privacy. 
 
@@ -78,7 +74,7 @@ When working with @uniknames, there are two preferred tools: a command line tool
 
 #### My Unikname app ###
 
-The Unikname Team alternatively provides an [application](my.unikname.app) to manage and use @uniknames. 
+The Unikname Team alternatively provides a [mobile application](my.unikname.app) to manage and use @uniknames. 
 
 
 
@@ -94,11 +90,19 @@ The prefix MUST be in lowercase as per the [DID specification](https://www.w3.or
 
 ## Method-specific Identifier ##
 
-A `unik` DID identifies a @unikname. A @unikname is a Non Fungible Token (NFT) from the **uns.network** that INSERT DESCRIPTION HERE.
+A `unik` DID identifies a UNIK, a Non Fungible Token (NFT) from the **uns.network** that represent a human-readable identifier, called a @unikname. As such, this method uses the unik-id, the primary key of said NFT, as its identifier. 
 
-As such, this method uses the unik-id, the primary key of said NFT, as its identifier. 
+The difference between the three concepts (UNIK, @unikname, and unik-id) is specified in the table below. The terms are used somewhat interchangeably in the reminder of this specification.
 
- A `unik` DID is formated as follows:
+| Concept   | Definition                                                   | Example                                                      |
+| :-------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| UNIK      | The NFT                                                      | {<br/>  "data": {<br/>    "id": "158cffbe4d7b567468a17290c0cd1546ea3b013059a3a471e5ad309cfddfb0e3",<br/>    "owner": {<br/>      "address": "UYWaMkArHJjMecuHgs6LYapFtvV27QeafX"<br/>    },<br/>    "creationBlock": "3af261e99286fadf83d35bf39b8a199525e4e535cd91597b23e36d296eb54d3f",<br/>    "creationTransaction": "2c834a17694e55716411da681db38ab233adf71fc6e4028a58728619c70a3031",<br/>    "creationDate": "2020-04-28T04:38:08.000Z",<br/>    "properties": [ ... ]<br/>  }<br/>} |
+| @unikname | The human-readable identifier                                | @bob                                                         |
+| unik-id   | The primary key of a UNIK. Generated from the associated @unikname. | 158cffbe4d7b567468a17290c0cd1546ea3b013059a3a471e5ad309cfddfb0e3 |
+
+ 
+
+A `unik` DID is formated as follows:
 
 ```
 unik-did = "did:unik:" uns-specific-idstring
@@ -109,6 +113,12 @@ unik-id = 64*HEXDIG
 
 
 ## Example DID document ##
+
+TODO : 
+
+​	Add custom context for publicKeyHex ?
+
+​	Or simply limit ourselves to publicKeyBase58 ?
 
 We provide an example DID document below:
 
@@ -146,28 +156,11 @@ At the moment, `unik` DID only support `uns` DID controllers. This may be extend
 
 A `unik` DID Document MUST include a list of public keys, at least one of which MUST belong to their controller. Such a key is labeled as `#controller`.
 
+This method supports two key formats: PublicKeyHex and PublicKeyBase58. The former is preferred but not supported by the core DID Specification. 
+
 ##### authentication #####
 
 A `unik` DID Document MUST include an authentication field. The default value for this field is `["controller"]`.
-
-
-
-TODO:
-
-- answer questions
-- address remarks
-
-
-
-Questions & Remarks :
-
-- Do we want to expose service endpoints ?
-  - See with Damien
-- Do we want to include modification date ?
-  - The info exist
-  - How hard is it to get ?
-  - Is it a valuable info to have ?
-- Validate that the verification method type is correct
 
 
 
@@ -237,13 +230,7 @@ For instance, the following @uniknames are equivalent:
 
 For privacy's sake, @uniknames are not directly written on the chain. Instead, the **uns.network** registers a *unik-id* derived from the @unikname. It is therefore not possible to access a registry of all the existing @uniknames. However, it is easy to verify if a given @unikname is available.
 
- The following [CLI]() command can be used to read the information related to a given @unikname: 
-
-```bash
-$ uns unik:read TARGET
-```
-
-Example:
+ The following [CLI command](https://docs.uns.network/uns-use-the-network/cli.html#unik-read) can be used to read the information related to a given @unikname: 
 
 ```bash
 $ uns unik:read @bob -f yaml
@@ -270,14 +257,9 @@ data:
 
 
 
-If the target @unikname does not exit, the following message will be returned
+If the target @unikname does not exit, an error message will be returned
 
-```bash
-$ uns unik:read @lulu
-» :stop: DID does not exist;
-```
 
-SHOULD WE NOT PUT THE ERROR MESSAGE IN THE DOC ?
 
 #### Step 3 - Register it on the chain ####
 
@@ -289,13 +271,11 @@ SHOULD WE NOT PUT THE ERROR MESSAGE IN THE DOC ?
 
 To claim a @unikname (and its associated DID), one must register the @unikname on the **uns.network** blockchain.
 
-Here again, the [CLI](https://docs.uns.network/uns-use-the-network/cli.html#download-and-installation) provides a method to do so:
+Here again, the [CLI](https://docs.uns.network/uns-use-the-network/cli.html#unik-create) provides a method to do so:
 
 ```bash
-$ uns unik:create --explicitValue {explicitValue} --type [individual|organization|network] --coupon {coupon}
+$ uns unik:create --explicitValue {explicitValue} --type [individual|organization|network]
 ```
-
-SHOULD WE REMOVE THE COUPON HERE ?
 
 The user will be prompted to enter their [passphrase](https://docs.uns.network/uns-network-key-concepts/cryptography-overview.html#passphrase) to sign the transaction. This authenticates the transaction.
 
@@ -321,7 +301,7 @@ See transaction in explorer: https://explorer.uns.network/#/transaction/a73f4269
 
 #### All-in-one method - The Unikname App ####
 
-Alternatively, my Unikname App provides a graphical interface to perform all three previous steps.
+Alternatively, my [Unikname App](my.unikname.app) provides a graphical interface to perform all three previous steps.
 
 | ![](/home/sdramemaigne/workspace/did-method-spec/did-unik/screenshot_choose_your_unikname.jpg) | ![](/home/sdramemaigne/workspace/did-method-spec/did-unik/screenshot_unikname_created.jpg) |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -333,13 +313,7 @@ Alternatively, my Unikname App provides a graphical interface to perform all thr
 
 The DDoc is constructed by extracting information written into the **uns.network** blockchain. These operations are read-only and are therefore not permissionned. 
 
-To retrieve information linked to a @unikname, use the following CLI command: 
-
-```bash
-$ uns unik:read TARGET
-```
-
-Example output:
+To retrieve information linked to a @unikname, use the following [CLI command](https://docs.uns.network/uns-use-the-network/cli.html#unik-read): 
 
 ```bash
 $ uns unik:read @bob -f yaml
@@ -366,13 +340,7 @@ data:
 
 
 
-To retrieve the public key associated with the owner's address, use the following CLI command:
-
-```bash
-$uns cryptoaccount:read TARGET
-```
-
-Example output:
+To retrieve the public key associated with the owner's address, use the following [CLI command](https://docs.uns.network/uns-use-the-network/cli.html#cryptoaccount-read):
 
 ```bash
 $ uns cryptoaccount:read UYWaMkArHJjMecuHgs6LYapFtvV27QeafX
@@ -490,71 +458,142 @@ This function in not yet supported by the `unik` DID method.
 
 ## Security Considerations ##
 
-This section follows requirements from [RFC 3552 - Section 5](https://tools.ietf.org/html/rfc3552#section-5) and the [DID Core Specification - Section 7.3](https://www.w3.org/TR/did-core/#security-requirements).
-
-Attacks to be considered:
-
-- eavesdropping
-- replay
-- message insertion
-- deletion
-- modification
-- man-in-the-middle
-- denial of service
+This section follows requirements from [RFC 3552](https://tools.ietf.org/html/rfc3552#section-5) and the [DID Core Specification](https://www.w3.org/TR/did-core/#security-requirements).
 
 
 
-What to say about them:
+### CRUD Operations ###
 
-- Out of scope attacks (and why)
-- In scope attacks
-  - susceptible to them
-  - protected against
-- residual risks after threat mitigations
-- if authentication
-  - base assumption of why this is secure (ie, public key crypto assumptions + private key safekeeping)
+Unik-specific DID and DDoc are created, read, and updated using the **uns.network** blockchain. Even when the controller of the `unik` DID is not a `uns` DID, creation and update operations require a **uns.network** cryptoaccount. All CRUD operations therefore benefit from the [security of **uns.network**](https://docs.uns.network/uns-network-security/) in terms of integrity protection and update authentication.
 
 
 
-For all methods defined in DID core spec section 7.2:
+#### Integrity protection ####
 
-- Integrity Protection
-- Update Authentication 
+The blockchain has many build-in integrity protection mechanisms. First, the history of transactions is replicated across many independent registries. Second, transactions and blocks are hashed and linked in a way that makes it impossible for a modification to go unnoticed. Third, **uns.network** is [secured by 23 players](https://docs.uns.network/uns-network-key-concepts/network-governance.html) that sign and validate blocks. Their number, diversity and vested interest in the network make it complicated to bribe them into forging an alternative history.
 
-
-
-For service endpoints the following MUST be discussed :
-
-- Method-specific endpoint authentication 
-- Security assumptions based on topology (light node if any)
+For all these reasons, once information has been added to the chain, it is hard to modify. Additionally, its integrity can easily be verified.
 
 
 
-If the protocol incorporates cryptographic protection mechanisms, the [DID method](https://www.w3.org/TR/did-core/#dfn-did-methods) specification *MUST* clearly indicate which portions of the data are protected and what the protections are, and *SHOULD* give an indication to what sorts of attacks the cryptographic protection is susceptible. For example, integrity only, confidentiality, endpoint authentication, and so on.
+#### Authentication ####
+
+The security of the authentication process is based on the assumption that the owner of the **uns.network** account that owns the UNIK is the only one that can access their private key. This assumption does not hold when the private key is derived from a "guessable" passphrase or if it has been otherwise compromised. The account owner is solely responsible for the security of their private key. To mitigate the first pitfall, user SHOULD choose random passphrases. We recommend to use a combination of twelve words generated using the [BIP39 Protocol](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki). 
+
+**uns.network** transaction are signed using ECDSA on the Secp256k1 curve. The security of ECDSA is dependent on the hardness of the Discrete Logarithm problem. Secp256k1 is a well-known and well-used curve. These choices ensure that a valid signature for a given public key can only be produced using the associated private key, which is only held by the account owner, thus authenticating the transaction and the associated operation. 
+
+
+
+### Threat mitigation ###
+
+#### Summary ####
+
+| Attacks                  | In-scope ? | Susceptibility | Comments                                                     |
+| ------------------------ | ---------- | -------------- | ------------------------------------------------------------ |
+| Eavesdropping            | no         | out of scope   | because everything is public                                 |
+| Replay attacks           | yes        | Protected      | transactions include a nounce                                |
+| Message Insertion        | yes        | Protected      | consequence: register a DID for someone else, or modify a DDoc |
+| Message Deletion         | yes        | Protected      | consequence: delete a DID, or prevent an update              |
+| Message Modification     | yes        | Protected      | consequence: take ownership of someone else's DID, or add an unwanted modification to a DDoc |
+| Man-in-the-middle attack | no         | out of scope   | because there is no communication stream to subvert          |
+| Denial of service        | yes        | Mitigated      | on-chain mitigation: fees, out-of-chain attacks are out of scope |
+
+
+
+#### In-scope attacks ####
+
+##### Replay attacks #####
+
+Blockchain transactions include a nounce that has to be unique for a given issuer. This nounce is incremented each time a given cryptoaccount makes a transaction. It must be included by the entity composing the transaction and signed as part of the transaction signature. This prevents transactions from being replayed. 
+
+Read operations are not subject to authorizations. Replaying them is without consequences.
+
+
+
+##### Message insertion, deletion, and modification #####
+
+###### Blockchain messages ######
+
+On the blockchain, messages are transactions. To be valid, a transaction must be signed by the private key associated with the issuer's address. This means that issuers cannot be spoofed. The signature is applied to the whole transaction, so no modification can occur unless an attacker is able to forge a valid signature for the modified transaction. 
+
+Once a transaction has been written into the blockchain, it is (computationally and logistically) very hard to delete (see CRUD operations - Integrity protection). In the event of an attacker intercepting a transaction before it reaches the network and censuring it, the issuer can re-issue said transaction using another network node. 
+
+This assumes users use the verification mechanisms that are available to them (signatures, hashes, multiple sources, etc).
+
+
+
+###### Out-of-blockchain messages ######
+
+`unik` DID are written, read, and updated on the **uns.network** blockchain. Messages used to request, transfer or otherwise manage this information are implementation-dependent. Their security is considered out of scope.
+
+
+
+##### Denial of service (DoS) #####
+
+###### On the blockchain ######
+
+Every **uns.network** transaction requires a fee to be processed. These fees are dependent on a transaction's volume and type. The network mitigates Denial of Service attacks by imposing a cost to each attempt that scales with the attack.
+
+Additionally, **uns.network** ensures there is a diversity of emitters in any given block. This prevents a single source from flooding the network with bogus transactions.
+
+
+
+###### On a given node ######
+
+Network players that choose to run their own blockchain node are solely responsible for their security. This includes a susceptibility to DoS attacks. If a given node cannot be contacted however, users can address their request to any other node on the network. Setting up a **uns.network** node is easy, the main hurdle being the time required to synchronize the new node to the network. As such, in the event of a large DoS attack, new network nodes can be deployed to replace those that cannot be accessed.
+
+
+
+#### Out of scope attacks ####
+
+All records from **uns.network** are public. An eavesdropper would gain no additional knowledge from what is already publicly available. This attack is therefore considered out of scope.
+
+Information used to create `unik` DID and DDoc are independently verifiable irregardless of how they were obtained. This means that an attacker gains nothing from subverting the communication channel used to retrieve them. This attack is therefore considered out of scope.
+
+
+
+
 
 ## Privacy Considerations ##
 
-This section follow specifications from [RFC6973 - Section 5](https://tools.ietf.org/html/rfc6973#section-5) and the [DID Core Specification - Section 7.4](https://www.w3.org/TR/did-core/#privacy-requirements).
+This section follow specifications from [RFC6973](https://tools.ietf.org/html/rfc6973#section-5) and the [DID Core Specification](https://www.w3.org/TR/did-core/#privacy-requirements).
 
-At minima, this section must point to [DID Core - Section 10](https://www.w3.org/TR/did-core/#privacy-considerations).
 
-If they apply, the spec MUST discuss the following
 
-- surveillance
-- stored data compromise
-- unsolicited traffic
-- misattribution
-- correlation
-- **identification**
-- secondary use
-- **disclosure**
-- exclusion
+#### Correlation ####
 
-## References ##
+Pb in any blockchain system. 
 
-[RFC3552]	[Guidelines for Writing RFC Text on Security Considerations](https://tools.ietf.org/html/rfc3552). E. Rescorla; B. Korver. IETF. July 2003. Best Current Practice. URL: https://tools.ietf.org/html/rfc3552
+Pseudonimity is guaranteed. 
 
-[]	[ECDSA Secp256k1 Signature 2019](https://w3c-ccg.github.io/lds-ecdsa-secp256k1-2019/). O. Steele. W3C. April 2019
+Harder to change pseudonym with the UNIK. (it's kind of the point)
 
-[]	[Linked Data Proofs](https://w3c-ccg.github.io/ld-proofs/). D. Longley, M. Sporny. W3C. 
+Users should be wary of correlation that could lift the pseudonymat
 
+Separate uniks per use: work, leisure, porn, ...
+
+If activities want to be isolated, then different UNIK.
+
+
+
+#### Identification ####
+
+No identification as part of the process
+
+Some use case may require it. But for the scope of this, identification is not required.
+
+Careful where you identify as it can be traced back to here.
+
+Meta data in particular can identify a person when coupled with other stuff.
+
+
+
+#### Disclosure ####
+
+Mechanism exist for that
+
+Voluntary for individuals, required for other types.
+
+
+
+More information about DID and privacy can be found in the [DID Core Specification](https://www.w3.org/TR/did-core/#privacy-considerations).
