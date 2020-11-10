@@ -1,11 +1,5 @@
 # Unikname DID Specification #
 
-TODO
-
-​	Write intro
-
-​	Write privacy considerations
-
 
 
 ## Author ##
@@ -22,7 +16,7 @@ Written by [Sophie Dramé-Maigné](mailto:sophie.dramemaigne@unikname.com)
 
 As the world is turning increasingly more digital, there is a growing need for globally unique identifiers. Decentralized Identifiers (DIDs) offer an alternative to traditional solutions relying on central entities to issue and manage such identifiers. DIDs take advantage of decentralized verifiable data registry such as blockchains to enable the decentralization of these processes and give users control over their own online identities. 
 
-And though physical users represent a good portion of DID owners, DID can be used to represent anything: industrial processes, digital assets, physical goods, blockchain tokens, and even identifiers. The `unik` DID method specializes in @uniknames, privacy-preserving human-readable identifiers, represented as Non-Fungible Tokens (NFT) on the **uns.network** blockchain. 
+Though physical users represent a good portion of DID owners, DID can be used to represent anything: industrial processes, digital assets, physical goods, blockchain tokens, and even identifiers. The `unik` DID method specializes in @uniknames, privacy-preserving human-readable identifiers, represented as Non-Fungible Tokens (NFT) on the **uns.network** blockchain. 
 
 This document defines the `unik` DID method in compliance with the W3C's [DID Specification](https://w3c.github.io/did-core/). It describes how unik-specific DID are generated as well as how to manage the corresponding DIDs and resolve them to DID Documents (DDoc). Because they represent identifiers, `unik` DID cannot be their own controller. `unik` DID are build to work with [uns DID](https://github.com/unik-name/did-method-spec/blob/main/did-uns/UNS-DID-Specification.md) as their management requires a **uns.network** cryptoaccount. However, other types of DIDs could be used as controllers in the future.
 
@@ -32,21 +26,13 @@ This DID method has been registered in the [DID Specification Registries](https:
 
 ## Intro ##
 
-TODO: Write intro
+The **uns.network** blockchain is dedicated to the management of Non Fungible Tokens (NFT). The first type of NFT that it supports are [@uniknames](https://docs.unikname.com/), privacy-preserving human-readable identifiers. Just like any other tokens, @uniknames can be bought or exchanged. They can also be linked to public properties their owner wishes to advertise: Addresses for other blockchain accounts, online CV, personal blog, ... @Uniknames can also be used to [connect to compliant websites](https://www.unikname.com/en/european-alternative-social-signup-gafam/) in a private and secure fashion. The `unik` DID method associates a DID with each of these NFT token.
 
+@uniknames are identifiers, not identities. They are labels that exist independently of the thing they are labeling. By default, @unikname tokens are linked to the **uns.network** cryptoaccount that owns them. As identifiers, `unik` DID cannot be their own controllers and rely on `uns` DID, [DID associated with **uns.network** cryptoaccounts](https://github.com/unik-name/did-method-spec/blob/main/did-uns/UNS-DID-Specification.md).  
 
+This specification describes how to create @unikname-associated DID and how to manage them. In particular, it describes how to choose a unikname, verify its availability, and register it. All information contained in DID Documents (DDoc) are extracted from the underlying blockchain. 
 
-NFT are identifiers not identification
-
-What we do
-
-human-readable blockchain-based decentralized
-
-DID associated to these @uniknames.
-
-This is to resolve DID to DID documents
-
-To solve @unikname to DID and more, Unikname has developed a resolver
+To solve @unikname to DID and more, Unikname has developed its [own resolver](https://my.unikname.com/).
 
 
 
@@ -556,43 +542,33 @@ Information used to create `unik` DID and DDoc are independently verifiable irre
 
 ## Privacy Considerations ##
 
-This section follow specifications from [RFC6973](https://tools.ietf.org/html/rfc6973#section-5) and the [DID Core Specification](https://www.w3.org/TR/did-core/#privacy-requirements).
+This section follow specifications from [RFC6973](https://tools.ietf.org/html/rfc6973#section-5) and the [DID Core Privacy Requirements](https://www.w3.org/TR/did-core/#privacy-requirements).
 
 
 
 #### Correlation ####
 
-Pb in any blockchain system. 
+As with any blockchain based system,  users are guaranteed pseudonymity. `unik` DID are meant to be longstanding easily recognizable pseudonyms. This makes the system  especially susceptible to correlation issues where attackers gain additional information about a users by cross-checking information from different sources or gathered over a long period of time. 
 
-Pseudonimity is guaranteed. 
+In classical blockchain applications, the workaround would be to change pseudonym (i.e. blockchain address) as often as possible. However, this counteract all the benefits of having a permanent, easily recognizable identifier. Users should therefore be wary of correlation possibilities when using their `unik` DID across different systems. 
 
-Harder to change pseudonym with the UNIK. (it's kind of the point)
-
-Users should be wary of correlation that could lift the pseudonymat
-
-Separate uniks per use: work, leisure, porn, ...
-
-If activities want to be isolated, then different UNIK.
+It may be prudent to consider that correlation can and will occur, and, in preparation, isolate different type of activities using different `unik` DID. For instance, one can have one @unikname for work-related activities, another for administrative activities, a third for personal matters, and so on. 
 
 
 
 #### Identification ####
 
-No identification as part of the process
-
-Some use case may require it. But for the scope of this, identification is not required.
-
-Careful where you identify as it can be traced back to here.
-
-Meta data in particular can identify a person when coupled with other stuff.
+No part of this process requires identification. But DID can be used in a number of use cases that might require it. We recommend users be careful when linking identifiable information to their DID and @unikname as these can be used to lift their pseudonimity. If possible, @uniknames linked to identifiable information should not be used when pseudonimity is required. Another *anonymous* DID should be used instead, i.e. one that is not and will not be linked to identifiable information.
 
 
 
 #### Disclosure ####
 
-Mechanism exist for that
+@unikname are private by default. Their explicit value does not appear on the chain. However, there is a in-chain mechanism for public disclosure. Disclosure is voluntary but may be required for certain uses such as registering as a delegate on the **uns.network**. In-chain disclosure is a non-reversible process. 
 
-Voluntary for individuals, required for other types.
+Users may also choose to publicly disclose their @unikname on other platforms (on their personal page for instance). Users should be aware that once their @unikname has been made public, there is no guarantee that it can be private again.
+
+Additionally, if it is not possible to list all @uniknames currently registered on the **uns.network**, one can still request information on a specific @unikname. Properties registered on a UNIK should therefore be considered public even though the associated @unikname has not been disclosed.
 
 
 
