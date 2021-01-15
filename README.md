@@ -14,4 +14,4 @@ Its specification is [publicly available in this repository](did-uns/UNS-DID-Spe
 
 This method associates a DID with every @unikname.
 
-Its specification is [publicly available in this repository](/did-unik/UNIK%20DID%20Specification.md)
+Its specification is [publicly available in this repository](/did-unik/UNIK-DID-Specification.md)
