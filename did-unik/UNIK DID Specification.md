@@ -16,7 +16,7 @@ Written by [Sophie Dramé-Maigné](mailto:sophie.dramemaigne@unikname.com)
 
 As the world is turning increasingly more digital, there is a growing need for globally unique identifiers. Decentralized Identifiers (DIDs) offer an alternative to traditional solutions relying on central entities to issue and manage such identifiers. DIDs take advantage of decentralized verifiable data registry such as blockchains to enable the decentralization of these processes and give users control over their own online identities. 
 
-Though physical users represent a good portion of DID owners, DID can be used to represent anything: industrial processes, digital assets, physical goods, blockchain tokens, and even identifiers. The `unik` DID method specializes in @uniknames, privacy-preserving human-readable identifiers, represented as Non-Fungible Tokens (NFT) on the **uns.network** blockchain. 
+Though physical users represent a good portion of DID owners, DID can be used to represent anything: industrial processes, digital assets, physical goods, blockchain tokens, and even identifiers. The `unik` DID method specializes in @unikname, privacy-preserving human-readable identifiers, represented as Non-Fungible Tokens (NFT) on the **uns.network** blockchain. 
 
 This document defines the `unik` DID method in compliance with the W3C's [DID Specification](https://w3c.github.io/did-core/). It describes how unik-specific DID are generated as well as how to manage the corresponding DIDs and resolve them to DID Documents (DDoc). Because they represent identifiers, `unik` DID cannot be their own controller. `unik` DID are build to work with [uns DID](https://github.com/unik-name/did-method-spec/blob/main/did-uns/UNS-DID-Specification.md) as their management requires a **uns.network** cryptoaccount. However, other types of DIDs could be used as controllers in the future.
 
@@ -26,41 +26,41 @@ This DID method has been registered in the [DID Specification Registries](https:
 
 ## Intro ##
 
-The **uns.network** blockchain is dedicated to the management of Non Fungible Tokens (NFT). The first type of NFT that it supports are [@uniknames](https://docs.unikname.com/), privacy-preserving human-readable identifiers. Just like any other tokens, @uniknames can be bought or exchanged. They can also be linked to public properties their owner wishes to advertise: Addresses for other blockchain accounts, online CV, personal blog, ... @Uniknames can also be used to [connect to compliant websites](https://www.unikname.com/en/european-alternative-social-signup-gafam/) in a private and secure fashion. The `unik` DID method associates a DID with each of these NFT token.
+The **uns.network** blockchain is dedicated to the management of Non Fungible Tokens (NFT). The first type of NFT that it supports are [@unikname](https://docs.unikname.com/), privacy-preserving human-readable identifiers. Just like any other tokens, @unikname can be bought or exchanged. They can also be linked to public properties their owner wishes to advertise: Addresses for other blockchain accounts, online CV, personal blog, ... @unikname can also be used to [connect to compliant websites](https://www.unikname.com/en/european-alternative-social-signup-gafam/) in a private and secure fashion. The `unik` DID method associates a DID with each of these NFT token.
 
-@uniknames are identifiers, not identities. They are labels that exist independently of the thing they are labeling. By default, @unikname tokens are linked to the **uns.network** cryptoaccount that owns them. As identifiers, `unik` DID cannot be their own controllers and rely on `uns` DID, [DID associated with **uns.network** cryptoaccounts](https://github.com/unik-name/did-method-spec/blob/main/did-uns/UNS-DID-Specification.md).  
+@unikname are identifiers, not identities. They are labels that exist independently of the thing they are labeling. By default, @unikname tokens are linked to the **uns.network** cryptoaccount that owns them. As identifiers, `unik` DID cannot be their own controllers and rely on `uns` DID, [DID associated with **uns.network** cryptoaccounts](https://github.com/unik-name/did-method-spec/blob/main/did-uns/UNS-DID-Specification.md).  
 
 This specification describes how to create @unikname-associated DID and how to manage them. In particular, it describes how to choose a unikname, verify its availability, and register it. All information contained in DID Documents (DDoc) are extracted from the underlying blockchain. 
 
-To solve @unikname to DID and more, Unikname has developed its [own resolver](https://my.unikname.com/).
+To solve a @unikname to a DID and more, Unikname has developed its [own resolver](https://my.unikname.com/).
 
 
 
 ## Target System ##
 
-The `unik` DID method uses the [**uns.network**](docs.uns.network) blockchain as the underlying Verifiable Data Registry. A **uns.network** cryptoaccount is therefore required to create and update DID and DDocs.
+The `unik` DID method uses the [**uns.network**](https://docs.uns.network) blockchain as the underlying Verifiable Data Registry. A **uns.network** cryptoaccount is therefore required to create and update DID and DDocs.
 
 **uns.network** is a distributed network and protocol dedicated to handling IDs rooted in the blockchain, aiming to secure any web and mobile connections, and to protect users' privacy. 
 
-**uns.network** is based on [ARK.io]().
+**uns.network** is based on [ARK.io](https://ark.io).
 
 
 
 ### Tools ###
 
-When working with @uniknames, there are two preferred tools: a command line tool, and a graphical interface. 
+When working with @unikname, there are two preferred tools: a command line tool, and a graphical interface. 
 
 
 
 #### Command Line Interface (CLI) ####
 
-**uns.network** provides an interactive [Command Line Interface](https://docs.uns.network/uns-use-the-network/cli.html#download-and-installation) to create and manage @uniknames as well as their properties and the cryptoaccount that own them. The rest of this specification will provide examples using the CLI. 
+**uns.network** provides an interactive [Command Line Interface](https://docs.uns.network/uns-use-the-network/cli.html#download-and-installation) to create and manage @unikname as well as their properties and the cryptoaccount that own them. The rest of this specification will provide examples using the CLI. 
 
 
 
 #### My Unikname app ###
 
-The Unikname Team alternatively provides a [mobile application](my.unikname.app) to manage and use @uniknames. 
+The Unikname Team alternatively provides a [mobile application](https://my.unikname.app/app) to manage and use your @unikname. 
 
 
 
@@ -76,7 +76,7 @@ The prefix MUST be in lowercase as per the [DID specification](https://www.w3.or
 
 ## Method-specific Identifier ##
 
-A `unik` DID identifies a UNIK, a Non Fungible Token (NFT) from the **uns.network** that represent a human-readable identifier, called a @unikname. As such, this method uses the unik-id, the primary key of said NFT, as its identifier. 
+A `unik` DID identifies a UNIK, a Non Fungible Token (NFT) from the **uns.network** that represents a human-readable identifier, called a @unikname. As such, this method uses the unik-id, the primary key of said NFT, as its identifier. 
 
 The difference between the three concepts (UNIK, @unikname, and unik-id) is specified in the table below. The terms are used somewhat interchangeably in the reminder of this specification.
 
@@ -100,12 +100,6 @@ unik-id = 64*HEXDIG
 
 ## Example DID document ##
 
-TODO : 
-
-​	Add custom context for publicKeyHex ?
-
-​	Or simply limit ourselves to publicKeyBase58 ?
-
 We provide an example DID document below:
 
 ```json
@@ -119,7 +113,7 @@ We provide an example DID document below:
             "id": "did:unik:158cffbe4d7b567468a17290c0cd1546ea3b013059a3a471e5ad309cfddfb0e3#controller",
             "controller": "did:uns:UYWaMkArHJjMecuHgs6LYapFtvV27QeafX",
             "type": "EcdsaSecp256k1VerificationKey2019",
-            "publicKeyHex": "02ef4ee8587a532cfb3bf3527c9ad1c14405cb1c6638ea477c5177dc121e35ea67"
+            "publicKeyBase58": "sZny6zsvdwXYJaVQ9HD1XAvUBwC2M3Fqn1GR4rk1QCWJ"
         }
     ], 
 	"authentication": ["controller"]
@@ -142,7 +136,7 @@ At the moment, `unik` DID only support `uns` DID controllers. This may be extend
 
 A `unik` DID Document MUST include a list of public keys, at least one of which MUST belong to their controller. Such a key is labeled as `#controller`.
 
-This method supports two key formats: PublicKeyHex and PublicKeyBase58. The former is preferred but not supported by the core DID Specification. 
+This method supports the PublicKeyBase58 format.
 
 ##### authentication #####
 
@@ -162,7 +156,7 @@ The creation of a `unik` DID requires three steps: the user chooses the @uniknam
 
 #### Step 1 - Choose a @unikname ####
 
-A @unikname is a human-readable identifier. It can be used to authenticate one-self on the Internet or to aggregate and advertise properties in an easily discoverable manner. @uniknames are private by default but can be publicly disclosed. 
+A @unikname is a human-readable identifier. It can be used to authenticate one-self on the Internet or to aggregate and advertise properties in an easily discoverable manner. @unikname are private by default but can be publicly disclosed. 
 
 A @unikname is formatted as follows:
 
@@ -172,7 +166,7 @@ A @unikname is formatted as follows:
 
 ##### Type #####
 
-There are 3 types of @uniknames that can be represented either by a number or a string:
+There are 3 types of @unikname that can be represented either by a number or a string:
 
 | Type (string) | Type (numerical value) |
 | :------------ | ---------------------- |
@@ -180,9 +174,9 @@ There are 3 types of @uniknames that can be represented either by a number or a 
 | organization  | 2                      |
 | network       | 3                      |
 
-When no type is specified, it defaults to individual. For more information on the different types of @uniknames, see the [relevant documentation](https://docs.uns.network/uns-network-key-concepts/unik-type.html#summary).
+When no type is specified, it defaults to individual. For more information on the different types of @unikname, see the [relevant documentation](https://docs.uns.network/uns-network-key-concepts/unik-type.html#summary).
 
-A @unikname therefore has several equivalent representations. For instance, the following @uniknames are equivalent and will resolve to the same DID:
+A @unikname therefore has several equivalent representations. For instance, the following @unikname are equivalent and will resolve to the same DID:
 
 ```
 @bob
@@ -200,7 +194,7 @@ The explicit value is the human-readable part of a @unikname. It can be an arbit
 
 To prevent phishing and spoofing attempts, explicit values that are too similar to each other are considered equivalent and will resolve to the same DID. This means that a @unikname with an explicit value too close to an existing @unikname of the same type cannot be registered. 
 
-For instance, the following @uniknames are equivalent:
+For instance, the following @unikname are equivalent:
 
 ```
 @bob
@@ -214,7 +208,7 @@ For instance, the following @uniknames are equivalent:
 
 #### Step 2 - Verify availability ####
 
-For privacy's sake, @uniknames are not directly written on the chain. Instead, the **uns.network** registers a *unik-id* derived from the @unikname. It is therefore not possible to access a registry of all the existing @uniknames. However, it is easy to verify if a given @unikname is available.
+For privacy's sake, @unikname are not directly written on the chain. Instead, the **uns.network** registers a *unik-id* derived from the @unikname. It is therefore not possible to access a registry of all the existing @unikname. However, it is easy to verify if a given @unikname is available.
 
  The following [CLI command](https://docs.uns.network/uns-use-the-network/cli.html#unik-read) can be used to read the information related to a given @unikname: 
 
@@ -289,9 +283,9 @@ See transaction in explorer: https://explorer.uns.network/#/transaction/a73f4269
 
 Alternatively, my [Unikname App](my.unikname.app) provides a graphical interface to perform all three previous steps.
 
-| ![](/home/sdramemaigne/workspace/did-method-spec/did-unik/screenshot_choose_your_unikname.jpg) | ![](/home/sdramemaigne/workspace/did-method-spec/did-unik/screenshot_unikname_created.jpg) |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-|                                                              |                                                              |
+| ![](./screenshot_choose_your_unikname.jpg) | ![](./screenshot_unikname_created.jpg) |
+| ------------------------------------------ | -------------------------------------- |
+|                                            |                                        |
 
 
 
@@ -359,7 +353,7 @@ The example above would yield the following DDoc:
             "id": "did:unik:158cffbe4d7b567468a17290c0cd1546ea3b013059a3a471e5ad309cfddfb0e3#controller",
             "controller": "did:uns:UYWaMkArHJjMecuHgs6LYapFtvV27QeafX",
             "type": "EcdsaSecp256k1VerificationKey2019",
-            "publicKeyHex": "02ef4ee8587a532cfb3bf3527c9ad1c14405cb1c6638ea477c5177dc121e35ea67"
+            "publicKeyBase58": "sZny6zsvdwXYJaVQ9HD1XAvUBwC2M3Fqn1GR4rk1QCWJ"
         }
     ], 
 	"authentication": ["controller"]
@@ -548,7 +542,7 @@ This section follow specifications from [RFC6973](https://tools.ietf.org/html/rf
 
 #### Correlation ####
 
-As with any blockchain based system,  users are guaranteed pseudonymity. `unik` DID are meant to be longstanding easily recognizable pseudonyms. This makes the system  especially susceptible to correlation issues where attackers gain additional information about a users by cross-checking information from different sources or gathered over a long period of time. 
+As with any blockchain-based system,  users are guaranteed pseudonymity. `unik` DID are meant to be longstanding easily recognizable pseudonyms. This makes the system  especially susceptible to correlation issues where attackers gain additional information about a users by cross-checking information from different sources or gathered over a long period of time. 
 
 In classical blockchain applications, the workaround would be to change pseudonym (i.e. blockchain address) as often as possible. However, this counteract all the benefits of having a permanent, easily recognizable identifier. Users should therefore be wary of correlation possibilities when using their `unik` DID across different systems. 
 
@@ -558,7 +552,7 @@ It may be prudent to consider that correlation can and will occur, and, in prepa
 
 #### Identification ####
 
-No part of this process requires identification. But DID can be used in a number of use cases that might require it. We recommend users be careful when linking identifiable information to their DID and @unikname as these can be used to lift their pseudonimity. If possible, @uniknames linked to identifiable information should not be used when pseudonimity is required. Another *anonymous* DID should be used instead, i.e. one that is not and will not be linked to identifiable information.
+No part of this process requires identification. But DID can be used in a number of use cases that might require it. We recommend users be careful when linking identifiable information to their DID and @unikname as these can be used to lift their pseudonymity. If possible, @unikname linked to identifiable information should not be used when pseudonymity is required. Another *anonymous* DID should be used instead, i.e. one that is not and will not be linked to identifiable information.
 
 
 
@@ -568,7 +562,7 @@ No part of this process requires identification. But DID can be used in a number
 
 Users may also choose to publicly disclose their @unikname on other platforms (on their personal page for instance). Users should be aware that once their @unikname has been made public, there is no guarantee that it can be private again.
 
-Additionally, if it is not possible to list all @uniknames currently registered on the **uns.network**, one can still request information on a specific @unikname. Properties registered on a UNIK should therefore be considered public even though the associated @unikname has not been disclosed.
+Additionally, if it is not possible to list all @unikname currently registered on the **uns.network**, one can still request information on a specific @unikname. Properties registered on a UNIK should therefore be considered public even though the associated @unikname has not been disclosed.
 
 
 
