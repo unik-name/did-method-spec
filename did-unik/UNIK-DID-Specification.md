@@ -32,7 +32,7 @@ The **uns.network** blockchain is dedicated to the management of Non Fungible To
 
 This specification describes how to create @unikname-associated DID and how to manage them. In particular, it describes how to choose a unikname, verify its availability, and register it. All information contained in DID Documents (DDoc) are extracted from the underlying blockchain. 
 
-To solve a @unikname to a DID and more, Unikname has developed its [own resolver](https://my.unikname.com/).
+To solve a @unikname to a DID and more, Unikname has developed its [own resolver](https://resolver.uns.network/).
 
 
 
